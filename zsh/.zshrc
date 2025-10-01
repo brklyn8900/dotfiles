@@ -14,13 +14,15 @@ fi
 # Base PATH setup
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# Homebrew
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+# Homebrew (Mac only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
 
 # =============================================================================
 # OH-MY-ZSH CONFIGURATION
 # =============================================================================
-export ZSH="/Users/ron/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""  # Disabled to use Starship
 
 # Plugins
@@ -29,13 +31,15 @@ plugins=(z git zsh-autosuggestions zsh-syntax-highlighting sudo)
 source $ZSH/oh-my-zsh.sh
 
 # =============================================================================
-# SSL/OPENSSL CONFIGURATION
+# SSL/OPENSSL CONFIGURATION (Mac only)
 # =============================================================================
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+  export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+fi
 
 # =============================================================================
 # GPG CONFIGURATION
@@ -65,7 +69,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # pnpm configuration
-export PNPM_HOME="$HOME/Library/pnpm"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -82,39 +90,48 @@ fi
 # =============================================================================
 # PYTHON ENVIRONMENT
 # =============================================================================
-export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
-export PATH="/Users/ron/Library/Python/3.11/bin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
+  export PATH="$HOME/Library/Python/3.11/bin:$PATH"
+else
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # =============================================================================
-# DEVELOPMENT TOOLS & FRAMEWORKS
+# DEVELOPMENT TOOLS & FRAMEWORKS (Mac only)
 # =============================================================================
-# Flutter & Dart
-export PATH="/opt/homebrew/opt/dart/libexec:$PATH"
-export PATH="/Users/ron/flutter/bin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Flutter & Dart
+  export PATH="/opt/homebrew/opt/dart/libexec:$PATH"
+  [ -d "$HOME/flutter" ] && export PATH="$HOME/flutter/bin:$PATH"
 
-# Sphinx documentation
-export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
+  # Sphinx documentation
+  export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 
-# Windsurf
-export PATH="/Users/ron/.codeium/windsurf/bin:$PATH"
+  # Windsurf
+  [ -d "$HOME/.codeium/windsurf" ] && export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
+  # Docker
+  [ -d "/Applications/Docker.app" ] && export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
+
+  # PostgreSQL
+  export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+fi
+
+# Cross-platform tools
 # Solana
-export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+[ -d "$HOME/.local/share/solana" ] && export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 
 # Foundry
-export PATH="$HOME/.foundry/bin:$PATH"
-
-# Docker
-export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin
-
-# PostgreSQL
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+[ -d "$HOME/.foundry" ] && export PATH="$HOME/.foundry/bin:$PATH"
 
 # Rust/Cargo
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
-# Custom tools
-export PATH="/Users/ron/devstuff/wallets/testenet:$PATH"
+# Custom tools (Mac only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  [ -d "$HOME/devstuff/wallets/testenet" ] && export PATH="$HOME/devstuff/wallets/testenet:$PATH"
+fi
 
 # =============================================================================
 # CUSTOM FUNCTIONS
@@ -206,8 +223,14 @@ tt() {
 
 alias releases='        local app=$(get_app) || return 1; heroku releases -a "$app"'
 
-
-source <(fzf --zsh)
+# FZF initialization
+if command -v fzf &> /dev/null; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    source <(fzf --zsh)
+  else
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  fi
+fi
 
 #-------------------------------------------------------------------------------
 # 10. TERMINAL APPEARANCE
@@ -289,10 +312,19 @@ fi
 # FINAL INITIALIZATION
 # =============================================================================
 # Local environment
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-# Powerlevel10k configuration
+# Powerlevel10k configuration (Mac only, optional)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 export GPG_TTY=$(tty)
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+
+# Zoxide initialization
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Starship prompt initialization
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
