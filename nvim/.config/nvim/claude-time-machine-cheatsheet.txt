@@ -1,0 +1,32 @@
+CLAUDE TIME MACHINE - QUICK REFERENCE
+======================================
+
+KEYBOARD SHORTCUTS (Space + keys)
+----------------------------------
+Space ct    →  Open Timeline
+Space cr    →  Restore 
+Space cd    →  Diff
+Space cs    →  Squash
+Space cl    →  Label
+
+TIMELINE CONTROLS
+-----------------
+j/↓         →  Move down
+k/↑         →  Move up  
+Enter       →  Restore selected
+d           →  Diff selected
+l           →  Label selected
+q/Esc       →  Close
+
+COMMANDS
+--------
+:ClaudeTimeline
+:ClaudeRestore
+:ClaudeStatus
+
+RESTORE OPTIONS
+---------------
+1 = Safe (new branch)
+2 = Hard reset (⚠️)  
+3 = Partial (files)
+4 = Cancel

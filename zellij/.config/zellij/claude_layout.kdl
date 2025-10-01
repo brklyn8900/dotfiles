@@ -1,0 +1,21 @@
+layout {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+        pane size="25%" command="claude"
+        pane size="25%" command="claude"
+        pane size="30%" command="nvim"
+        pane size="20%" split_direction="horizontal" {
+          pane size="30%"
+          pane size="40%" {
+            command "claude-monitor"
+            args "--plan" "max20"
+          }
+          pane size="30%" command="lazygit"
+        }
+    }
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+}

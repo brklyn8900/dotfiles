@@ -1,0 +1,7 @@
+# Stow ignore file - patterns to exclude from stowing
+\.git
+\.gitignore
+^/README.*
+^/LICENSE.*
+^/vps-setup\.sh
+\.DS_Store

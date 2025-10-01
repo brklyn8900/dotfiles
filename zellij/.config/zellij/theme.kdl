@@ -1,0 +1,122 @@
+// A minimal dark theme with subtle pastel accents and low-contrast borders
+// Author: Ron
+// Version: 1.0.0
+// Generated from theme.json on 2025-09-30
+
+themes {
+    minimal-pastel {
+        text_unselected {
+            base 180 180 190
+            background 45 45 55
+            emphasis_0 160 160 170
+            emphasis_1 140 140 150
+            emphasis_2 120 120 140
+            emphasis_3 100 100 110
+        }
+        text_selected {
+            base 220 220 235
+            background 65 65 80
+            emphasis_0 200 200 220
+            emphasis_1 190 190 210
+            emphasis_2 180 180 200
+            emphasis_3 170 170 188
+        }
+        ribbon_unselected {
+            base 160 160 170
+            background 45 45 55
+            emphasis_0 140 140 150
+            emphasis_1 120 120 140
+            emphasis_2 100 100 110
+            emphasis_3 80 80 90
+        }
+        ribbon_selected {
+            base 210 210 225
+            background 75 75 95
+            emphasis_0 190 190 210
+            emphasis_1 180 180 200
+            emphasis_2 170 170 188
+            emphasis_3 160 160 180
+        }
+        table_title {
+            base 180 180 190
+            background 50 50 64
+            emphasis_0 160 160 170
+            emphasis_1 140 140 150
+            emphasis_2 120 120 140
+            emphasis_3 100 100 110
+        }
+        table_cell_unselected {
+            base 160 160 170
+            background 45 45 55
+            emphasis_0 140 140 150
+            emphasis_1 130 130 140
+            emphasis_2 120 120 130
+            emphasis_3 110 110 120
+        }
+        table_cell_selected {
+            base 220 220 235
+            background 65 65 80
+            emphasis_0 200 200 220
+            emphasis_1 190 190 210
+            emphasis_2 180 180 200
+            emphasis_3 170 170 188
+        }
+        list_unselected {
+            base 160 160 170
+            background 45 45 55
+            emphasis_0 140 140 150
+            emphasis_1 130 130 140
+            emphasis_2 120 120 130
+            emphasis_3 110 110 120
+        }
+        list_selected {
+            base 220 220 235
+            background 70 70 90
+            emphasis_0 210 216 220
+            emphasis_1 190 190 210
+            emphasis_2 180 180 200
+            emphasis_3 170 170 188
+        }
+        frame_unselected {
+            base 45 45 55
+            background 45 45 55
+            emphasis_0 70 70 80
+            emphasis_1 60 60 70
+            emphasis_2 50 50 60
+            emphasis_3 40 40 50
+        }
+        frame_selected {
+            base 140 140 160
+            background 55 55 70
+            emphasis_0 130 130 150
+            emphasis_1 120 120 140
+            emphasis_2 110 110 130
+            emphasis_3 100 100 120
+        }
+        frame_highlight {
+            base 180 160 190
+            background 60 55 70
+            emphasis_0 170 150 180
+            emphasis_1 160 140 170
+            emphasis_2 150 130 160
+            emphasis_3 140 120 150
+        }
+        exit_code_success {
+            base 140 180 160
+            background 45 45 55
+            emphasis_0 130 170 150
+            emphasis_1 120 160 140
+            emphasis_2 110 150 130
+            emphasis_3 100 140 120
+        }
+        exit_code_error {
+            base 200 140 150
+            background 45 45 55
+            emphasis_0 190 130 140
+            emphasis_1 180 120 130
+            emphasis_2 170 110 120
+            emphasis_3 160 100 110
+        }
+        multiplayer_user_colors 180 160 190 160 180 200 200 170 160 170 190 170 160 170 160 190 180 160 200 180 160 170 160 190 160 190 180 190 170 180
+    }
+}

@@ -1,0 +1,25 @@
+layout {
+  cwd "/Users/ron/devstuff/projects/sky/sky_travel_club"
+
+  pane size=1 borderless=true {
+    plugin location="zellij:tab-bar"
+  }
+  pane split_direction="vertical" {
+   pane {
+      command "rails"
+      args "s" "-b" "0.0.0.0"
+    }
+    pane split_direction="horizontal" {
+      pane size="30%" {
+        command "ngrok"
+        args "http" "--url=really-moved-hawk.ngrok-free.app" "3000" 
+      }
+      pane size="30%" {
+        command "bin/dev"
+      }
+      pane size="40%" {
+        command "btop"
+      }
+    }
+  }
+}
