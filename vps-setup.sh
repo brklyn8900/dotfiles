@@ -161,6 +161,7 @@ if [ ! -d "$HOME/dotfiles" ]; then
 
     # Stow all configs
     print_step "Stowing configurations..."
+    stow aliases
     stow zsh
     stow nvim
     stow zellij

@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+# =============================================================================
+# LOCAL ALIASES - Machine-specific (not tracked in git)
+# =============================================================================
+# Copy this file to ~/.aliases.local and customize for each machine
+# cp ~/dotfiles/aliases.local.example ~/.aliases.local
+
+# -----------------------------------------------------------------------------
+# Directory Shortcuts (adjust paths for this machine)
+# -----------------------------------------------------------------------------
+# alias ds='cd ~/devstuff'
+# alias db='cd ~/Dropbox'
+# alias sky='cd ~/devstuff/projects/sky/sky_travel_club'
+# alias apps='cd ~/devstuff/projects/armana/apps'
+
+# -----------------------------------------------------------------------------
+# SSH Shortcuts
+# -----------------------------------------------------------------------------
+# alias pweb='ssh ron@173.255.233.45'
+# alias aweb='ssh devadmin@50.116.48.151'
+# alias api='ssh -p 1818 ron@138.68.243.203'
+
+# -----------------------------------------------------------------------------
+# Project-specific
+# -----------------------------------------------------------------------------
+# alias kich='cd ~/devstuff/projects/hiroko/kichiya-frontend && ./dev.sh'
+
+# -----------------------------------------------------------------------------
+# Machine-specific tools
+# -----------------------------------------------------------------------------
+# Intel brew on Apple Silicon (if needed)
+# alias ibrew='arch -arm64 brew'
+
+# MySQL (if installed locally)
+# alias mysql=/usr/local/mysql/bin/mysql
+# alias mystart="sudo /usr/local/mysql/support-files/mysql.server start"
+# alias mystop="sudo /usr/local/mysql/support-files/mysql.server stop"

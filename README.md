@@ -4,6 +4,7 @@ My terminal configuration managed with [GNU Stow](https://www.gnu.org/software/s
 
 ## 📦 What's Included
 
+- **aliases**: Portable shell aliases (machine-specific go in ~/.aliases.local)
 - **zsh**: Shell configuration with Oh My Zsh, plugins, and custom functions
 - **nvim**: Neovim configuration with plugins
 - **zellij**: Terminal multiplexer configuration with custom layouts
@@ -46,6 +47,7 @@ git clone <your-repo-url> ~/dotfiles
 cd ~/dotfiles
 
 # 3. Stow the configurations you want
+stow aliases
 stow zsh
 stow nvim
 stow zellij
@@ -54,7 +56,11 @@ stow tmux
 stow git
 stow local
 
-# 4. Install additional tools (see Tools section below)
+# 4. (Optional) Create machine-specific aliases
+cp aliases.local.example ~/.aliases.local
+nvim ~/.aliases.local
+
+# 5. Install additional tools (see Tools section below)
 ```
 
 ## 🛠️ Tools Installed

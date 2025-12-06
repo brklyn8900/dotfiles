@@ -114,6 +114,7 @@ backup_if_exists() {
     fi
 }
 
+backup_if_exists ~/.aliases
 backup_if_exists ~/.zshrc
 backup_if_exists ~/.config/nvim
 backup_if_exists ~/.config/zellij
@@ -126,6 +127,7 @@ print_success "Backups complete"
 print_step "Stowing configurations..."
 cd "$HOME/dotfiles"
 
+stow -v aliases 2>&1 | grep -v "^BUG" || true
 stow -v zsh 2>&1 | grep -v "^BUG" || true
 stow -v nvim 2>&1 | grep -v "^BUG" || true
 stow -v zellij 2>&1 | grep -v "^BUG" || true
