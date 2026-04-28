@@ -1,0 +1,129 @@
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+
+# Editor and IDE state
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.tmp
+*.temp
+*~
+\#*\#
+.\#*
+Session.vim
+Sessionx.vim
+.netrwhist
+
+# Logs and runtime output
+*.log
+logs/
+log/
+tmp/
+temp/
+*.pid
+*.seed
+
+# Local secrets and machine-specific overrides
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.secret
+*.secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+aliases.local
+*.local
+!*.local.example
+
+# Shell history and generated shell state
+.zsh_history
+.zcompdump*
+.zsh_sessions/
+.bash_history
+.python_history
+.lesshst
+.wget-hsts
+
+# Dotfile manager and local install artifacts
+.stowrc.local
+stow-local/
+install.log
+setup.log
+backup/
+backups/
+*.backup
+*.backup-*
+*.bak
+*.orig
+*.rej
+
+# Neovim generated data
+nvim/.config/nvim/.lazy/
+nvim/.config/nvim/plugin/packer_compiled.lua
+nvim/.config/nvim/lazy-lock.json.bak
+nvim/.config/nvim/session/
+nvim/.config/nvim/sessions/
+nvim/.config/nvim/.luarc.json
+
+# Tmux and terminal multiplexer transient files
+tmux/.config/tmux/resurrect/
+tmux/.config/tmux/plugins/
+*.tmux.log
+
+# Zellij generated state
+zellij/.config/zellij/sessions/
+zellij/.config/zellij/cache/
+
+# Node and frontend tooling caches
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.npm/
+.yarn/
+.parcel-cache/
+.turbo/
+.vite/
+dist/
+build/
+coverage/
+
+# Language and tool caches
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.bundle/
+vendor/bundle/
+.sass-cache/
+.eslintcache
+
+# Archives and packaged artifacts
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar

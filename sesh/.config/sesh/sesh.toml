@@ -1,0 +1,19 @@
+[sort]
+order = ["tmux", "config", "zoxide"]
+
+[default_session]
+startup_command = "nvim"
+
+[[session]]
+name = "tmux-config"
+path = "~/.config/tmux"
+startup_command = "nvim tmux.conf"
+
+[[session]]
+name = "dotfiles"
+path = "~/dotfiles"
+
+[[session]]
+name = "nvim-config"
+path = "~/.config/nvim"
+startup_command = "nvim"
