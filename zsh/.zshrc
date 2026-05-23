@@ -1,14 +1,4 @@
 # =============================================================================
-# POWERLEVEL10K INSTANT PROMPT (Keep at top)
-# =============================================================================
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# =============================================================================
 # CORE PATH SETUP
 # =============================================================================
 # Base PATH setup
@@ -19,6 +9,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 fi
 
+# Additional completions must be on fpath before Oh My Zsh runs compinit.
+fpath=(/Users/ron/.local/share/zsh-completion/completions $fpath) # avalanche completion
+
 # =============================================================================
 # OH-MY-ZSH CONFIGURATION
 # =============================================================================
@@ -26,7 +19,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""  # Disabled to use Starship
 
 # Plugins
-plugins=(z git zsh-autosuggestions zsh-syntax-highlighting sudo)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -223,13 +216,28 @@ tt() {
 
 alias releases='        local app=$(get_app) || return 1; heroku releases -a "$app"'
 
+# history setup
+HISTFILE=$HOME/.zhistory
+SAVEHIST=50000
+HISTSIZE=50000
+setopt append_history
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_verify
+
 # FZF initialization
-if command -v fzf &> /dev/null; then
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    source <(fzf --zsh)
-  else
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]]; then
+    source /opt/homebrew/opt/fzf/shell/completion.zsh 2>/dev/null
   fi
+  if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh 2>/dev/null
+  fi
+else
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
 #-------------------------------------------------------------------------------
@@ -314,9 +322,6 @@ fi
 # Local environment
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-# Powerlevel10k configuration (Mac only, optional)
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 export GPG_TTY=$(tty)
 
 # Zoxide initialization
@@ -328,3 +333,15 @@ fi
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
+
+# mise version manager
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+# completion using arrow keys (based on history)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# Machine-local additions that should not live in shared dotfiles.
+[ -f "$HOME/.zshrc.local" ] && . "$HOME/.zshrc.local"
